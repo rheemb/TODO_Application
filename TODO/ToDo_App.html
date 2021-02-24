@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>TodoTracker</title>
+  <style>
+    body{
+      padding: 15px;
+      background-color: blanchedalmond;
+      font-family: sans-serif;
+    }
+    #title{
+      padding: 10px;
+      font-size: 36px;
+      border: 2px solid #fff;
+      width:250px;
+    }
+    #todo-header{
+      font-size: 24px;
+    }
+    ul{
+      list-style-type: none;
+      padding-left: 0;
+      width: 250px;
+    }
+    li{
+      color: #333;
+      background-color: rgba(255, 255, 255, .5);
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="title">Todo Tracker</h1>
+
+  <form>
+    <input type="text" id="user-todo" placeholder="New Todo" required>
+  </form>
+
+  <h2 id="todo-header">Todos</h2>
+  <ul>
+
+  </ul>
+
+  <button id="clear">Clear All</button>
+
+<script>
+  var form=document.querySelector('form');
+  var todoList=document.querySelector('ul');
+  var button=document.querySelector('button');
+  var input=document.getElementById('user-todo');
+
+  form.addEventListener('submit',function(event){
+    event.preventDefault();
+    todoMaker(input.value);
+    input.value=""; // this will make sure the text field will be default to empty
+  });
+
+  var todoMaker=function(textGiven){ 
+    var todo=document.createElement('li'); // we'll create a li tag to assign values in list
+    todo.textContent=textGiven; //we use the text content property to assign a string of a todo which we would like to display
+    todoList.appendChild(todo); // we are appending the li child item to the ul tag
+  }
+
+  button.addEventListener('click',function(){
+    while (todoList.firstChild) {
+        todoList.removeChild(todoList.firstChild);
+      }
+  });
+
+</script>
+</body>
+</html>
